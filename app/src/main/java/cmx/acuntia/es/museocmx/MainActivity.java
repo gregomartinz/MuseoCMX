@@ -1,13 +1,12 @@
 package cmx.acuntia.es.museocmx;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageButton;
 
 import org.json.JSONException;
@@ -25,12 +24,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton botonZona;
     static JSONObject jObj = null;
     static JSONObject positionObj = null;
-    String imgMap = "";
     String ubicacion = "";
-    Double imgx = 0.0;
-    Double imgy = 0.0;
-    Double x = 0.0;
-    Double y = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +33,17 @@ public class MainActivity extends AppCompatActivity {
         //Aquí se edita el toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle("Bienvenido al museo");
-        toolbar.setLogo(R.mipmap.ic_launcher);
+        if (toolbar != null) {
+            toolbar.setTitle("Bienvenido al museo");
+            toolbar.setLogo(R.mipmap.ic_launcher);
+        }
 
         botonMap = (ImageButton) findViewById(R.id.imageButton);
-        botonMap.setImageResource(R.drawable.mapsicon);
         botonZona = (ImageButton) findViewById(R.id.imageButton2);
-        botonZona.setImageResource(R.drawable.painting2);
-
-
+        if (botonMap != null && botonZona != null) {
+            botonMap.setImageResource(R.drawable.mapsicon);
+            botonZona.setImageResource(R.drawable.painting2);
+        }
 
         botonMap.setOnClickListener(new View.OnClickListener() {
             @Override
