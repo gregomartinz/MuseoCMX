@@ -7,6 +7,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -34,11 +36,12 @@ public class MapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         if (toolbar != null) {
             toolbar.setTitle("Mapa del museo");
-            toolbar.setNavigationIcon(R.drawable.ic_refresh_black_24dp);
-            toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        }
+        setSupportActionBar(toolbar);
+        if (toolbar != null) {
+            toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24px);
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -46,7 +49,6 @@ public class MapActivity extends AppCompatActivity {
                 }
             });
         }
-
 
         img = (ImageView) findViewById(R.id.imageView);
 
@@ -58,6 +60,35 @@ public class MapActivity extends AppCompatActivity {
         } catch (JSONException | InterruptedException | ExecutionException | IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_map, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.action_refresh:
+                try {
+                    getZone();
+                    drawPoint(bitmap);
+                } catch (JSONException | InterruptedException | ExecutionException | IOException e) {
+                    e.printStackTrace();
+                }
+                return true;
+            case R.id.action_settings:
+                //metodoSettings()
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
 
     private void getJSONData() throws JSONException {
@@ -85,7 +116,7 @@ public class MapActivity extends AppCompatActivity {
         Paint currentPaint;
         currentPaint = new Paint();
         currentPaint.setDither(true);
-        currentPaint.setColor(0xFFFF0000);  // alpha.r.g.b
+        currentPaint.setColor(0xFF0000FF);  // alpha.r.g.b
         currentPaint.setStyle(Paint.Style.STROKE);
         currentPaint.setStrokeJoin(Paint.Join.ROUND);
         currentPaint.setStrokeCap(Paint.Cap.ROUND);
@@ -118,8 +149,9 @@ public class MapActivity extends AppCompatActivity {
         Double propx = imgx / mapx;
         Double propy = imgy / mapy;
 
-        x = img.getX() + posx*propx;
-        y = img.getY() + posy*propy;
+        x =  posx*propx;
+        y =  posy*propy;
+
     }
 
 }
