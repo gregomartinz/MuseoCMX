@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -55,6 +56,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     descarga();
+                    if (jObj == null){
+                        Toast.makeText(getApplicationContext(),"No está conectado a la red", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 } catch (IOException | JSONException | ExecutionException | InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -67,8 +72,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
+                    descarga();
+                    if (jObj == null){
+                        Toast.makeText(getApplicationContext(),"No está conectado a la red", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     getZone();
-                } catch (JSONException | InterruptedException e) {
+                } catch (JSONException | InterruptedException | IOException | ExecutionException e) {
                     e.printStackTrace();
                 }
                 Intent intento = new Intent(MainActivity.this, ZoneActivity.class);

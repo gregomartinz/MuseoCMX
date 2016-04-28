@@ -6,13 +6,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class ZoneActivity extends AppCompatActivity {
+public class ZoneActivity extends AppCompatActivity{
 
     TextView textUbic;
+    ListView lista;
     String ubicacion;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,8 +29,6 @@ public class ZoneActivity extends AppCompatActivity {
         }
         setSupportActionBar(toolbar);
         if (toolbar != null) {
-
-            toolbar.setNavigationIcon(R.drawable.ic_refresh_white_24px);
             toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24px);
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
@@ -34,8 +38,8 @@ public class ZoneActivity extends AppCompatActivity {
             });
         }
 
-        textUbic = (TextView) findViewById(R.id.textView);
 
+        textUbic = (TextView) findViewById(R.id.textView);
         ubicacion = getIntent().getStringExtra("ubicacion");
         textUbic.setText(ubicacion);
 

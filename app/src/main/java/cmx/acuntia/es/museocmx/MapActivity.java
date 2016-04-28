@@ -2,6 +2,7 @@ package cmx.acuntia.es.museocmx;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -10,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -34,6 +37,9 @@ public class MapActivity extends AppCompatActivity {
     Double imgy = 0.0;
     Double x = 0.0;
     Double y = 0.0;
+    private Matrix matrix = new Matrix();
+    private float scale = 0.4f;
+    private ScaleGestureDetector SGD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +61,7 @@ public class MapActivity extends AppCompatActivity {
         }
 
         img = (ImageView) findViewById(R.id.imageView);
+        SGD = new ScaleGestureDetector(this,new ScaleListener());
 
         try {
             jObj  = new JSONObject(getIntent().getStringExtra("Json"));
@@ -96,6 +103,7 @@ public class MapActivity extends AppCompatActivity {
         }
 
     }
+
     private void descarga() throws IOException, JSONException, InterruptedException, ExecutionException {
 
         String mac = getWifiMacAddress();
@@ -191,6 +199,24 @@ public class MapActivity extends AppCompatActivity {
         x =  posx*propx;
         y =  posy*propy;
 
+    }
+
+
+    public boolean onTouchEvent(MotionEvent ev) {
+        SGD.onTouchEvent(ev);
+        return true;
+    }
+
+    private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+        @Override
+        public boolean onScale(ScaleGestureDetector detector) {
+            scale *= detector.getScaleFactor();
+            scale = Math.max(0.1f, Math.min(scale, 5.0f));
+
+            matrix.setScale(scale, scale);
+            img.setImageMatrix(matrix);
+            return true;
+        }
     }
 
 }
