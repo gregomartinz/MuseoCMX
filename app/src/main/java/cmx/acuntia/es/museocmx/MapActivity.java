@@ -7,6 +7,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +17,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.net.NetworkInterface;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class MapActivity extends AppCompatActivity {
@@ -76,8 +80,10 @@ public class MapActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_refresh:
                 try {
+                    descarga();
                     getZone();
                     drawPoint(bitmap);
+                    Log.d("Estamos trabajando en",x + " " + y);
                 } catch (JSONException | InterruptedException | ExecutionException | IOException e) {
                     e.printStackTrace();
                 }
@@ -89,6 +95,39 @@ public class MapActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+    private void descarga() throws IOException, JSONException, InterruptedException, ExecutionException {
+
+        String mac = getWifiMacAddress();
+        jObj = new DownloadTask().execute(mac).get();
+
+    }
+
+    public static String getWifiMacAddress() {
+        try {
+            String interfaceName = "wlan0";
+            List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
+            for (NetworkInterface intf : interfaces) {
+                if (!intf.getName().equalsIgnoreCase(interfaceName)){
+                    continue;
+                }
+
+                byte[] mac = intf.getHardwareAddress();
+                if (mac==null){
+                    return "";
+                }
+
+                StringBuilder buf = new StringBuilder();
+                for (byte aMac : mac) {
+                    buf.append(String.format("%02X:", aMac));
+                }
+                if (buf.length()>0) {
+                    buf.deleteCharAt(buf.length() - 1);
+                }
+                return buf.toString();
+            }
+        } catch (Exception ignored) { } // for now eat exceptions
+        return "";
     }
 
     private void getJSONData() throws JSONException {

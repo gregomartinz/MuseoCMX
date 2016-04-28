@@ -1,6 +1,7 @@
 package cmx.acuntia.es.museocmx;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -29,12 +30,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            setContentView(R.layout.activity_mainls);
+        }else{
+            setContentView(R.layout.activity_main);
+        }
         //Aquí se edita el toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Bienvenido al museo");
         setSupportActionBar(toolbar);
         if (toolbar != null) {
-            toolbar.setTitle("Bienvenido al museo");
             toolbar.setLogo(R.mipmap.ic_launcher);
         }
 
