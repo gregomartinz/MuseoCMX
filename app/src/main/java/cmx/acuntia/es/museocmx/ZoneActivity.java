@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
@@ -19,6 +20,8 @@ public class ZoneActivity extends AppCompatActivity{
     TextView textUbic;
     ListView lista;
     String ubicacion;
+    ArrayAdapter adaptador;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +40,10 @@ public class ZoneActivity extends AppCompatActivity{
                 }
             });
         }
+
+        lista = (ListView)findViewById(R.id.listView);
+        adaptador = new CuadroArrayAdapter(this,R.layout.list_item,Datasource.GOYA);
+        lista.setAdapter(adaptador);
 
 
         textUbic = (TextView) findViewById(R.id.textView);
