@@ -1,19 +1,16 @@
 package cmx.acuntia.es.museocmx;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class ZoneActivity extends AppCompatActivity{
 
@@ -44,6 +41,18 @@ public class ZoneActivity extends AppCompatActivity{
         lista = (ListView)findViewById(R.id.listView);
         adaptador = new CuadroArrayAdapter(this,R.layout.list_item,Datasource.GOYA);
         lista.setAdapter(adaptador);
+
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                Intent intento = new Intent(ZoneActivity.this, DetailCuadroActivity.class);
+                Cuadro c = (Cuadro) lista.getItemAtPosition(position);
+                intento.putExtra("nombreCuadro",c.getNombre());
+                intento.putExtra("cuadroDetail", c.getDescripcion());
+                startActivity(intento);
+            }
+        });
 
 
         textUbic = (TextView) findViewById(R.id.textView);

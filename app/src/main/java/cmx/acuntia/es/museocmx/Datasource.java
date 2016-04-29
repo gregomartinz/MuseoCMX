@@ -1,11 +1,8 @@
 package cmx.acuntia.es.museocmx;
 
 
-import android.content.res.Resources;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 
 public class Datasource {
