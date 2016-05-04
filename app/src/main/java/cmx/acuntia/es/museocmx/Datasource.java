@@ -7,11 +7,11 @@ import java.util.List;
 
 public class Datasource {
 
-    static List GOYA = new ArrayList<>();
-    static List VELAZQUEZ = new ArrayList<>();
-    static List PICASSO = new ArrayList<>();
-    static List VAN_GOGH = new ArrayList<>();
-    static List MODERNO = new ArrayList<>();
+    static List<Cuadro> GOYA = new ArrayList<>();
+    static List<Cuadro> VELAZQUEZ = new ArrayList<>();
+    static List<Cuadro> PICASSO = new ArrayList<>();
+    static List<Cuadro> VAN_GOGH = new ArrayList<>();
+    static List<Cuadro> MODERNO = new ArrayList<>();
 
     static{
 

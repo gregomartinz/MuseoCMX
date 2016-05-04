@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -14,7 +13,7 @@ public class ImageTask extends AsyncTask<String, Integer, Bitmap> {
 
     @Override
     protected Bitmap doInBackground(String... params) {
-        URL url = null;
+        URL url;
         InputStream is = null;
         try {
             url = new URL(params[0]);
@@ -24,13 +23,10 @@ public class ImageTask extends AsyncTask<String, Integer, Bitmap> {
             urlConnection.setRequestProperty("cache-control", "no-cache");
             urlConnection.setConnectTimeout(1000);
             is = urlConnection.getInputStream();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Bitmap bitmap = BitmapFactory.decodeStream(is);
-        return bitmap;
+        return BitmapFactory.decodeStream(is);
     }
 }

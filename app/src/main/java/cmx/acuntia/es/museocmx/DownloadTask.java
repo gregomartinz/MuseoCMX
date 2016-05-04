@@ -14,7 +14,6 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.util.Date;
 
 public class DownloadTask extends AsyncTask<String, Integer, JSONObject> {
 
@@ -23,7 +22,7 @@ public class DownloadTask extends AsyncTask<String, Integer, JSONObject> {
 
         InputStream is = null;
         String json = "";
-        JSONArray jarray = null;
+        JSONArray jarray;
         JSONObject jObj = null;
 
         try {
@@ -45,6 +44,7 @@ public class DownloadTask extends AsyncTask<String, Integer, JSONObject> {
         }
         //Read the content of the GET method
         try {
+            assert is != null;
             BufferedReader reader = new BufferedReader(new InputStreamReader(
                     is, "iso-8859-1"), 8);
             StringBuilder sb = new StringBuilder();
