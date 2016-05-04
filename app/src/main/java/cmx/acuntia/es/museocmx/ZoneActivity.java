@@ -40,7 +40,28 @@ public class ZoneActivity extends AppCompatActivity{
         }
 
         lista = (ListView)findViewById(R.id.listView);
-        adaptador = new CuadroArrayAdapter(this,R.layout.list_item,Datasource.GOYA);
+        textUbic = (TextView) findViewById(R.id.textView);
+        ubicacion = getIntent().getStringExtra("ubicacion");
+        textUbic.setText(ubicacion);
+
+        if (ubicacion.equals("FORMACION")){
+            //Sala de Picaso
+            adaptador = new CuadroArrayAdapter(this,R.layout.list_item,Datasource.VAN_GOGH);
+        }if (ubicacion.equals("PYCLUCAS")){
+            //Sala de Velazquez
+            adaptador = new CuadroArrayAdapter(this,R.layout.list_item,Datasource.VELAZQUEZ);
+        }if (ubicacion.equals("SOPORTE")){
+            //Sala de Van Gogh
+            adaptador = new CuadroArrayAdapter(this,R.layout.list_item,Datasource.GOYA);
+        }if (ubicacion.equals("PYCALBERTO")){
+            //Sala de Goya
+            adaptador = new CuadroArrayAdapter(this,R.layout.list_item,Datasource.PICASSO);
+        }if (ubicacion.equals("HALL")){
+            //Sala arte moderno
+            adaptador = new CuadroArrayAdapter(this,R.layout.list_item,Datasource.MODERNO);
+        }
+
+//        adaptador = new CuadroArrayAdapter(this,R.layout.list_item,Datasource.GOYA);
         lista.setAdapter(adaptador);
 
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -57,9 +78,7 @@ public class ZoneActivity extends AppCompatActivity{
         });
 
 
-        textUbic = (TextView) findViewById(R.id.textView);
-        ubicacion = getIntent().getStringExtra("ubicacion");
-        textUbic.setText(ubicacion);
+
 
     }
 
