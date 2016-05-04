@@ -1,6 +1,7 @@
 package cmx.acuntia.es.museocmx;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -46,10 +47,11 @@ public class ZoneActivity extends AppCompatActivity{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-                Intent intento = new Intent(ZoneActivity.this, DetailCuadroActivity.class);
+                Intent intento = new Intent(ZoneActivity.this, DetalleCuadroActivity.class);
                 Cuadro c = (Cuadro) lista.getItemAtPosition(position);
                 intento.putExtra("nombreCuadro",c.getNombre());
                 intento.putExtra("cuadroDetail", c.getDescripcion());
+                intento.putExtra("imagen", c.getImagen());
                 startActivity(intento);
             }
         });

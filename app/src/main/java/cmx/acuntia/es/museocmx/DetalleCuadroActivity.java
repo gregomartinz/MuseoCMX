@@ -6,16 +6,21 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-public class DetailCuadroActivity extends AppCompatActivity {
+public class DetalleCuadroActivity extends AppCompatActivity {
 
-    TextView detalle;
+    String cuadro;
+    int imagen;
+    ImageView imgCuadro;
+    TextView txtCuadro;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_cuadro);
+        setContentView(R.layout.activity_detalle_cuadro);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             String nameCuadro = getIntent().getStringExtra("nombreCuadro");
@@ -32,11 +37,14 @@ public class DetailCuadroActivity extends AppCompatActivity {
             });
         }
 
-        detalle = (TextView)findViewById(R.id.textDetail);
+        txtCuadro = (TextView) findViewById(R.id.textView2);
+        imgCuadro = (ImageView) findViewById(R.id.imageView2);
 
-        String cuadro = getIntent().getStringExtra("cuadroDetail");
+        cuadro = getIntent().getStringExtra("cuadroDetail");
+        imagen = getIntent().getIntExtra("imagen",0);
 
-        detalle.setText(cuadro);
+        txtCuadro.setText(cuadro);
+        imgCuadro.setImageResource(imagen);
 
 
     }

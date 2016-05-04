@@ -6,12 +6,14 @@ public class Cuadro {
     private String autor;
     private String descripcion;
     private int categoria;
+    private int imagen;
 
-    public Cuadro(String nombre, String autor, int categoria, String descripcion){
+    public Cuadro(String nombre, String autor, int categoria, String descripcion, int imagen){
         this.nombre = nombre;
         this.autor = autor;
         this.categoria = categoria;
         this.descripcion = descripcion;
+        this.imagen = imagen;
     }
 
     public void setNombre(String nombre){
@@ -30,8 +32,15 @@ public class Cuadro {
         this.categoria=categoria;
     }
 
+    public void setImagen(int imagen) {
+        this.imagen = imagen;
+    }
+
     public String getNombre(){return nombre;}
     public String getAutor(){return autor;}
     public int getCategoria(){return categoria;}
     public String getDescripcion(){return descripcion;}
+    public int getImagen() {
+        return imagen;
+    }
 }

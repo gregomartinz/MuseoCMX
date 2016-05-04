@@ -36,8 +36,8 @@
             android:label="@string/title_activity_zone"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".DetailCuadroActivity"
-            android:label="@string/title_activity_detail_cuadro"
+            android:name=".DetalleCuadroActivity"
+            android:label="@string/title_activity_detalle_cuadro"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

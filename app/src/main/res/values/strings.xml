@@ -26,4 +26,5 @@
     <string name="vestida">Es una de las obras más conocidas de Goya, realizado en oleo sobre lienzo de 95 por 188 cm. Fue pintado entre 1802 y 1808 y se encuentra en el Museo del Prado. Es hermano de "La Maja Desnuda". </string>
     <string name="saturno">Es una de las pinturas al oleo sobre revoco, que formó parte de la decoración de los muros de la casa que Goya adquirió en 1819, llamada la Quinta del Sordo. La obra pertenece a la serie de Pinturas Negras. </string>
     <string name="title_activity_detail_cuadro">DetailCuadroActivity</string>
+    <string name="title_activity_detalle_cuadro">DetalleCuadroActivity</string>
 </resources>
