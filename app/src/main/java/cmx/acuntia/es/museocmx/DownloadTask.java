@@ -24,12 +24,16 @@ public class DownloadTask extends AsyncTask<String, Integer, JSONObject> {
         String json = "";
         JSONArray jarray;
         JSONObject jObj = null;
+        String URLServer = MainActivity.URLSERVER;
 
         try {
             String mac = params[0];
             mac = mac.toLowerCase();
             mac = URLEncoder.encode(mac, "UTF-8");
-            String dir = "http://192.168.104.24/api/location/v2/clients?macAddress=" + mac;
+            if (URLServer == null){
+                URLServer = "192.168.104.24";
+            }
+            String dir = "http://" + URLServer + "/api/location/v2/clients?macAddress=" + mac;
             URL url = new URL(dir);
 //            Log.d("la url es", url.toString());
             URLConnection urlConnection = url.openConnection();

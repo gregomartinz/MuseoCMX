@@ -38,7 +38,8 @@
         <activity
             android:name=".DetalleCuadroActivity"
             android:label="@string/title_activity_detalle_cuadro"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>

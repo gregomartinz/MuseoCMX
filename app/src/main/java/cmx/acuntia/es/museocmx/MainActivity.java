@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     ImageButton botonMap;
     ImageButton botonZona;
+    static String URLSERVER = null;
     static JSONObject jObj = null;
     static JSONObject positionObj = null;
     String ubicacion = "";
@@ -104,7 +105,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent intento = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intento);
         }
 
         return super.onOptionsItemSelected(item);
