@@ -33,6 +33,7 @@ public class DownloadTask extends AsyncTask<String, Integer, JSONObject> {
             if (URLServer == null){
                 URLServer = "192.168.104.24";
             }
+            MainActivity.URLSERVER = URLServer;
             String dir = "http://" + URLServer + "/api/location/v2/clients?macAddress=" + mac;
             URL url = new URL(dir);
 //            Log.d("la url es", url.toString());
