@@ -39,7 +39,9 @@ public class MainActivity extends AppCompatActivity {
         }
         //Aquí se edita el toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Bienvenido al museo");
+        if (toolbar != null) {
+            toolbar.setTitle("Bienvenido al museo");
+        }
         setSupportActionBar(toolbar);
         if (toolbar != null) {
             toolbar.setLogo(R.mipmap.ic_launcher);

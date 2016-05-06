@@ -1,8 +1,6 @@
 package cmx.acuntia.es.museocmx;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -33,9 +31,10 @@ public class SettingsActivity extends AppCompatActivity {
             });
         }
 
-        String url = MainActivity.URLSERVER;
         ip = (EditText) findViewById(R.id.editText);
-        ip.setText(MainActivity.URLSERVER);
+        if (ip != null) {
+            ip.setText(MainActivity.URLSERVER);
+        }
         guardar = (Button) findViewById(R.id.button);
 
         guardar.setOnClickListener(new View.OnClickListener() {
