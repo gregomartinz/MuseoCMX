@@ -8,7 +8,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -91,7 +90,6 @@ public class MapActivity extends AppCompatActivity {
                     descarga();
                     getZone();
                     drawPoint(bitmap);
-                    Log.d("Estamos trabajando en",x + " " + y);
                 } catch (JSONException | InterruptedException | ExecutionException | IOException e) {
                     e.printStackTrace();
                 }
@@ -202,7 +200,6 @@ public class MapActivity extends AppCompatActivity {
         y =  posy*propy;
 
     }
-
 
     public boolean onTouchEvent(MotionEvent ev) {
         SGD.onTouchEvent(ev);

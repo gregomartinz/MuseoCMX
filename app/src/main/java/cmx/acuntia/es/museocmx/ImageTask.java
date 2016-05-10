@@ -25,10 +25,9 @@ public class ImageTask extends AsyncTask<String, Integer, Bitmap> {
 
     @Override
     protected Bitmap doInBackground(String... params) {
-//        URL url;
+
         InputStream is = null;
         try {
-//            url = new URL(params[0]);
             URLConnection urlConnection = url.openConnection();
             urlConnection.setDoInput(true);
             urlConnection.setRequestProperty("authorization", "Basic YWRtaW46QWN1bnQxYQ==");
