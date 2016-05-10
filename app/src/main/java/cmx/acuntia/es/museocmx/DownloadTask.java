@@ -19,6 +19,7 @@ import java.net.URLEncoder;
 public class DownloadTask extends AsyncTask<String, Integer, JSONObject> {
 
     private String mac;
+    private String URLServer = MainActivity.URLSERVER;
 
     @Override
     protected void onPreExecute() {
@@ -32,10 +33,8 @@ public class DownloadTask extends AsyncTask<String, Integer, JSONObject> {
         String json = "";
         JSONArray jarray;
         JSONObject jObj = null;
-        String URLServer = MainActivity.URLSERVER;
 
         try {
-//            String mac = params[0];
             mac = mac.toLowerCase();
             mac = URLEncoder.encode(mac, "UTF-8");
             if (URLServer == null){
@@ -67,12 +66,9 @@ public class DownloadTask extends AsyncTask<String, Integer, JSONObject> {
             }
             is.close();
             json = sb.toString();
-//            Log.d("Lo que se baja", json);
         } catch (Exception e) {
             Log.e("Buffer Error", "Error converting result " + e.toString());
         }
-        //Try parse the string to a JSON object
-
         try {
             jarray = new JSONArray(json);
             jObj = jarray.getJSONObject(0);
@@ -85,5 +81,6 @@ public class DownloadTask extends AsyncTask<String, Integer, JSONObject> {
     @Override
     protected void onPostExecute(JSONObject object) {
         MapActivity.jObj = object;
+        MainActivity.jObj = object;
     }
 }

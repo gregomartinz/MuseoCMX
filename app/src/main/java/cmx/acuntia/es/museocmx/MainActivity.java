@@ -116,8 +116,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void descarga() throws IOException, JSONException, InterruptedException, ExecutionException {
 
-        String mac = getWifiMacAddress();
-        jObj = new DownloadTask().execute(mac).get();
+        DownloadTask d = new DownloadTask();
+        d.execute();
+//        String mac = getWifiMacAddress();
+//        jObj = new DownloadTask().execute(mac).get();
 
     }
 

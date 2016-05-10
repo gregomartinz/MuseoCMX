@@ -107,11 +107,8 @@ public class MapActivity extends AppCompatActivity {
 
     private void descarga() throws IOException, JSONException, InterruptedException, ExecutionException {
 
-//        String mac = getWifiMacAddress();
         DownloadTask d = new DownloadTask();
         d.execute();
-//        jObj = d.get();
-
     }
 
     public static String getWifiMacAddress() {
@@ -152,14 +149,14 @@ public class MapActivity extends AppCompatActivity {
 
         getJSONData();
         dirMap = "http://" + MainActivity.URLSERVER + "/api/config/v1/maps/imagesource/" + imgMap;
-        ImageTask task = new ImageTask();
-        task.execute();
-//        bitmap = new ImageTask().execute(dir).get();
+//        ImageTask task = new ImageTask();
+//        task.execute(dirMap);
+        bitmap = new ImageTask().execute().get();
         imgx = (double) bitmap.getWidth();
         imgy = (double) bitmap.getHeight();
     }
 
-    private void getMapSize(){
+    private void getMapSize() throws InterruptedException {
         imgx = (double) bitmap.getWidth();
         imgy = (double) bitmap.getHeight();
     }
