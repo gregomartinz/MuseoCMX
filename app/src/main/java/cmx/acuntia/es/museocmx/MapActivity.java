@@ -31,7 +31,7 @@ public class MapActivity extends AppCompatActivity {
 
     static JSONObject jObj = null;
     static JSONObject positionObj = null;
-    Bitmap bitmap;
+    static Bitmap bitmap;
     String imgMap = "";
     Double imgx = 0.0;
     Double imgy = 0.0;
@@ -109,7 +109,7 @@ public class MapActivity extends AppCompatActivity {
         String mac = getWifiMacAddress();
         DownloadTask d = new DownloadTask();
         d.execute(mac);
-        jObj = d.get();
+//        jObj = d.get();
 
     }
 
@@ -151,7 +151,9 @@ public class MapActivity extends AppCompatActivity {
 
         getJSONData();
         String dir = "http://192.168.104.24/api/config/v1/maps/imagesource/" + imgMap;
-        bitmap = new ImageTask().execute(dir).get();
+        ImageTask task = new ImageTask();
+        task.execute(dir);
+//        bitmap = new ImageTask().execute(dir).get();
         imgx = (double) bitmap.getWidth();
         imgy = (double) bitmap.getHeight();
     }

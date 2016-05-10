@@ -29,4 +29,9 @@ public class ImageTask extends AsyncTask<String, Integer, Bitmap> {
 
         return BitmapFactory.decodeStream(is);
     }
+
+    @Override
+    protected void onPostExecute(Bitmap b) {
+        MapActivity.bitmap = b;
+    }
 }
