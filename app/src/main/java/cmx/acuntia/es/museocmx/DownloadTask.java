@@ -17,6 +17,7 @@ import java.net.URLEncoder;
 
 public class DownloadTask extends AsyncTask<String, Integer, JSONObject> {
 
+
     @Override
     protected JSONObject doInBackground(String... params) {
 
@@ -72,5 +73,10 @@ public class DownloadTask extends AsyncTask<String, Integer, JSONObject> {
             Log.e("JSON Parser", "Error parsing data " + e.toString());
         }
         return jObj;
+    }
+
+    @Override
+    protected void onPostExecute(JSONObject object) {
+        MapActivity.jObj = object;
     }
 }

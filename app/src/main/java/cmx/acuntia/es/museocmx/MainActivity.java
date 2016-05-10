@@ -148,7 +148,6 @@ public class MainActivity extends AppCompatActivity {
         return "";
     }
 
-
     public void getZone() throws JSONException, InterruptedException {
         positionObj = jObj.getJSONObject("mapCoordinate");
 

@@ -107,7 +107,9 @@ public class MapActivity extends AppCompatActivity {
     private void descarga() throws IOException, JSONException, InterruptedException, ExecutionException {
 
         String mac = getWifiMacAddress();
-        jObj = new DownloadTask().execute(mac).get();
+        DownloadTask d = new DownloadTask();
+        d.execute(mac);
+        jObj = d.get();
 
     }
 
