@@ -6,17 +6,29 @@ import android.os.AsyncTask;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
 public class ImageTask extends AsyncTask<String, Integer, Bitmap> {
 
+    private URL url;
+
+    @Override
+    protected void onPreExecute() {
+        try {
+            url = new URL(MapActivity.dirMap);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     protected Bitmap doInBackground(String... params) {
-        URL url;
+//        URL url;
         InputStream is = null;
         try {
-            url = new URL(params[0]);
+//            url = new URL(params[0]);
             URLConnection urlConnection = url.openConnection();
             urlConnection.setDoInput(true);
             urlConnection.setRequestProperty("authorization", "Basic YWRtaW46QWN1bnQxYQ==");

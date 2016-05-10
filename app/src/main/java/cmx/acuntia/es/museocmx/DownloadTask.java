@@ -11,12 +11,19 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
 public class DownloadTask extends AsyncTask<String, Integer, JSONObject> {
 
+    private String mac;
+
+    @Override
+    protected void onPreExecute() {
+        mac = MapActivity.getWifiMacAddress();
+    }
 
     @Override
     protected JSONObject doInBackground(String... params) {
@@ -28,7 +35,7 @@ public class DownloadTask extends AsyncTask<String, Integer, JSONObject> {
         String URLServer = MainActivity.URLSERVER;
 
         try {
-            String mac = params[0];
+//            String mac = params[0];
             mac = mac.toLowerCase();
             mac = URLEncoder.encode(mac, "UTF-8");
             if (URLServer == null){
