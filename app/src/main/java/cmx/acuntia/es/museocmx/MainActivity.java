@@ -15,9 +15,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.net.NetworkInterface;
-import java.util.Collections;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
@@ -121,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
         d.execute();
     }
 
+    @SuppressWarnings("ConstantConditions")
     public void getZone() throws JSONException, InterruptedException {
         positionObj = jObj.getJSONObject("mapCoordinate");
 
